@@ -7,6 +7,8 @@ import org.springframework.util.StringUtils;
 public class SubscriptionServiceImpl implements SubscriptionService
 {
 
+	private static final String TRUNCATED = " ... (truncated) ... ";
+
 	/**
 	 * Truncate the given String to the given integer length by replacing the middle portion with " ... (truncated) ... "
 	 * @param orderDetails - String which has to be truncated
@@ -25,7 +27,7 @@ public class SubscriptionServiceImpl implements SubscriptionService
 		//Case where total is 200, and 2nd parameter is 5, then you ignore the 2nd parameter and truncate to 1+21+1
 		else if ((len <= 21) && (total > 21))
 		{
-			trunc = orderDetails.substring(0,1).concat(" ... (truncated) ... ").concat(orderDetails.substring(total-1, total));
+			trunc = orderDetails.substring(0,1).concat(TRUNCATED).concat(orderDetails.substring(total-1, total));
 		}	
 		else if ((total > len+21) || ((total > len) && (len > 21)))
 		{
@@ -35,11 +37,11 @@ public class SubscriptionServiceImpl implements SubscriptionService
 			//To handle this, we have assumed to take 1 extra value from the beginning.
 			if (len % 2 != 0) 
 			{
-				trunc = orderDetails.substring(0, mid).concat(" ... (truncated) ... ").concat(orderDetails.substring(orderDetails.length()-mid, orderDetails.length()));
+				trunc = orderDetails.substring(0, mid).concat(TRUNCATED).concat(orderDetails.substring(orderDetails.length()-mid, orderDetails.length()));
 			}
 			else
 			{
-				trunc = orderDetails.substring(0, mid+1).concat(" ... (truncated) ... ").concat(orderDetails.substring(orderDetails.length()-mid, orderDetails.length()));
+				trunc = orderDetails.substring(0, mid+1).concat(TRUNCATED).concat(orderDetails.substring(orderDetails.length()-mid, orderDetails.length()));
 			}
 		}				
 	
