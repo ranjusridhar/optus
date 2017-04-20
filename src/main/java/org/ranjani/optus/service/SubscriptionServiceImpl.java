@@ -37,11 +37,11 @@ public class SubscriptionServiceImpl implements SubscriptionService
 			//To handle this, we have assumed to take 1 extra value from the beginning.
 			if (len % 2 != 0) 
 			{
-				trunc = orderDetails.substring(0, mid).concat(TRUNCATED).concat(orderDetails.substring(orderDetails.length()-mid, orderDetails.length()));
+				trunc = orderDetails.substring(0, mid).concat(TRUNCATED).concat(orderDetails.substring(total-mid, total));
 			}
 			else
 			{
-				trunc = orderDetails.substring(0, mid+1).concat(TRUNCATED).concat(orderDetails.substring(orderDetails.length()-mid, orderDetails.length()));
+				trunc = orderDetails.substring(0, mid+1).concat(TRUNCATED).concat(orderDetails.substring(total-mid, total));
 			}
 		}				
 	
