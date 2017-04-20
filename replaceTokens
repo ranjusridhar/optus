@@ -1,0 +1,12 @@
+inputFile=$1
+propFile=$2
+outFile=$3
+cat $inputFile > $outFile
+
+while read line;
+do
+key=`echo $line | cut -d "=" -f1`
+value=`echo $line | cut -d "=" -f2`
+finalKey=\\[\\[$key\\]\\]
+`sed -i "s/$finalKey/$value/g" $outFile`
+done < $propFile
